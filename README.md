@@ -92,11 +92,10 @@ A citation file is included at `CITATION.cff`. GitHub will use this file to show
 
 ## License
 
-No final license has been selected in this starter package. See `LICENSE_NOTICE.md` before making the repository public.
+This repository is currently distributed under the rights notice in `LICENSE_NOTICE.md`.
 
-For a research repository, one common arrangement is:
+Copyright © 2026 Wayne Baker. All rights reserved unless otherwise stated.
 
-* a Creative Commons license for the paper text, and
-* an open-source software license for any scripts.
+No permission is granted to reproduce, redistribute, modify, sublicense, or republish the paper text, LaTeX source, figures, or supporting documentation without written permission from the author.
 
-Choose the license before public release.
+If verification scripts are added later, they may be released under a separate open-source software license.
