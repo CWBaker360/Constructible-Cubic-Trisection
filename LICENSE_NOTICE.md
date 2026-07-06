@@ -1,20 +1,15 @@
 # License Notice
 
-A final license has not yet been selected for this starter repository.
+Copyright © 2026 Wayne Baker.
 
-Before making the repository public, choose how the material may be reused.
+All rights reserved unless otherwise stated.
 
-## Suggested decision
+This repository is provided as a source archive for reading, citation, and verification of the paper:
 
-For a research-paper repository, a clean arrangement is usually:
+**A Constructible Cubic Error Cascade for Approximate Angle Trisection**
 
-1. **Paper text and figures:** Creative Commons license, such as CC BY 4.0, if you want others to share and cite with attribution.
-2. **Code and scripts:** MIT License, BSD-3-Clause, or Apache-2.0, if you want the verification code to be reusable.
+No permission is granted to reproduce, redistribute, modify, sublicense, or republish the paper text, LaTeX source, figures, or supporting documentation without written permission from the author.
 
-## Current status
+If verification scripts are added later, they may be released under a separate open-source software license.
 
-Until a license is added, the safest public interpretation is:
-
-> Copyright © 2026 Wayne Baker. All rights reserved unless otherwise stated.
-
-Replace this notice with a formal `LICENSE` file before public release.
+This notice may be replaced by a formal license in a future release.
