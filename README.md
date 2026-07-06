@@ -1,7 +1,7 @@
 # A Constructible Cubic Error Cascade for Approximate Angle Trisection
 
-**Author:** Wayne Baker
-**Date:** July 2, 2026
+**Author:** Wayne Baker  
+**Date:** July 2, 2026  
 **Status:** Preprint / source archive
 
 This repository contains the LaTeX source and supporting documentation for the paper:
@@ -16,8 +16,7 @@ The seed construction satisfies
 
 $$
 D(\theta)-\frac{\theta}{3}
-==========================
-
+=
 \frac{7}{10368}\theta^3+O(\theta^5),
 $$
 
@@ -27,11 +26,10 @@ The residual correction operator is written analytically as
 
 $$
 \mathscr{R}(e)
-==============
-
-## e
-
-2\arcsin!\left(
+=
+e
+-
+2\arcsin\!\left(
 \frac43\sin\frac{3e}{8}
 \right),
 $$
@@ -40,8 +38,7 @@ and has local expansion
 
 $$
 \mathscr{R}(e)
-==============
-
+=
 -\frac{7}{384}e^3+O(e^5).
 $$
 
@@ -102,13 +99,7 @@ No final license has been selected in this starter package. See `LICENSE_NOTICE.
 
 For a research repository, one common arrangement is:
 
-* a Creative Commons license for the paper text, and
-* an open-source software license for any scripts.
+- a Creative Commons license for the paper text, and
+- an open-source software license for any scripts.
 
 Choose the license before public release.
-
-* a Creative Commons license for the paper text, and
-* an open-source software license for any scripts.
-
-Choose the license before public release.
-
