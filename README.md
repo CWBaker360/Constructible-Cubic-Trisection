@@ -6,6 +6,16 @@
 
 This repository contains the LaTeX source and supporting documentation for the paper **A Constructible Cubic Error Cascade for Approximate Angle Trisection**.
 
+## Read the paper
+
+The compiled preprint PDF is available here:
+
+- [`paper/constructible_cubic_trisection.pdf`](paper/constructible_cubic_trisection.pdf)
+
+The LaTeX source is available here:
+
+- [`paper/constructible_cubic_trisection.tex`](paper/constructible_cubic_trisection.tex)
+
 The paper describes a straightedge-and-compass construction that produces a constructible approximation $D(\theta)$ to one third of a given angle $\theta$, together with a constructible residual correction step whose local error law is cubic.
 
 ## Main result
