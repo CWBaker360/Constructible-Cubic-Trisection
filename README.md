@@ -87,3 +87,7 @@ For a research repository, one common arrangement is:
 
 Choose the license before public release.
 
+* an open-source software license for any scripts.
+
+Choose the license before public release.
+
