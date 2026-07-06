@@ -1,0 +1,848 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!50!black
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Rop}{\mathscr{R}}
+\newcommand{\dd}{\,d}
+
+\title{A Constructible Cubic Error Cascade for Approximate Angle Trisection}
+\author{Wayne Baker}
+\date{July 2, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We describe a straightedge-and-compass construction producing a constructible approximation
+$D(\theta)$ to one third of a given angle $\theta$.  The seed approximation satisfies
+\[
+D(\theta)-\frac{\theta}{3}
+=
+\frac{7}{10368}\theta^3+O(\theta^5),
+\]
+where angles in asymptotic formulae are measured in radians.  We then describe a Euclidean
+correction step, written analytically as the residual operator
+\[
+\Rop(e)
+=
+e
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3e}{8}
+\right).
+\]
+Its local expansion is
+\[
+\Rop(e)
+=
+-\frac{7}{384}e^3+O(e^5).
+\]
+Thus repeated correction increases the local error order cubically.  Starting from
+the seed error \(O(\theta^3)\), the first and second corrected angles have
+errors \(O(\theta^9)\) and \(O(\theta^{27})\), respectively.  The
+trigonometric notation is an analytic model of the Euclidean construction, not
+a procedural call to transcendental functions.  The correction step is realized
+by copying and bisecting angles, representing sine values as directed projection
+lengths on a reference circle, scaling lengths by similar triangles, and
+constructing the corresponding right-triangle angle.  The method therefore
+constructs arbitrarily refinable approximants to \(\theta/3\), while the exact
+trisection of an arbitrary angle remains impossible in the classical
+straightedge-and-compass sense.
+\end{abstract}
+
+\section*{Overview}
+\label{sec:overview}
+
+The main idea is simple: start with a constructible seed approximation whose error is cubic in the angle size, then apply a constructible correction whose local error scales as the cube of the input error. In the local regime, this turns an \(O(\theta^3)\) approximation into one of order \(O(\theta^9)\), and a second correction gives \(O(\theta^{27})\). The analytic formulas in the paper are not numerical shortcuts; they are compact descriptions of Euclidean constructions carried out with standard compass-and-straightedge operations.
+
+The technical sections below make this precise. Section~\ref{sec:euclidean-preliminaries} explains how the trigonometric notation is realized geometrically. The seed construction is then analyzed, followed by the residual correction step and the resulting cubic cascade. The final sections record the constructibility status, a numerical consistency check, and the comparison with exact trisection.
+
+\section{Introduction}
+
+Exact trisection of an arbitrary angle is impossible by straightedge and compass alone. This classical result, usually traced to Wantzel, concerns exact Euclidean constructibility. The present paper addresses a different problem: the construction of high-order approximations to \(\theta/3\).
+
+The method has two components. First, a Euclidean seed angle \(D\) is constructed from the given angle \(\theta\). Second, a residual correction is applied to the remaining signed error. Although the correction is written compactly with \(\sin\) and \(\arcsin\), the formula is only an analytic model of the construction rather than a numerical prescription. Geometrically, the sine term is represented by a directed length on a reference circle; the factor \(4/3\) is realized by similar triangles; and the inverse-sine step is obtained by constructing a right triangle and recovering its angle.
+
+The resulting sequence of constructible approximants is
+\[
+D,\quad I,\quad M,\quad \ldots.
+\]
+Its key feature is the cubic residual law
+\[
+e_{n+1}
+=
+-\frac{7}{384}e_n^3+O(e_n^5),
+\]
+where
+\[
+e_n=A_n-\frac{\theta}{3}.
+\]
+Consequently, the local error orders proceed as
+\[
+3,\quad 9,\quad 27,\quad 81,\ldots .
+\]
+
+Throughout the paper, asymptotic expansions are written in radians. Numerical tables may display angles in degrees for convenience, but the formulae themselves are radian formulae.
+
+\section{Euclidean Preliminaries}
+\label{sec:euclidean-preliminaries}
+
+We use only classical straightedge-and-compass operations. Angles are copied by drawing equal-radius arcs from the relevant vertices and transferring the corresponding chord. Angle sums and differences are obtained by placing copied angles consecutively on a chosen ray, with orientation determining whether the result is an addition or subtraction. Rational length scaling, such as multiplication by \(4/3\), is performed by similar triangles via the intercept theorem.
+
+When a formula contains \(\sin \phi\), this does not mean that a transcendental function is evaluated numerically. On a fixed reference circle, the sine of a constructed angle is represented by the corresponding directed projection length, or equivalently by the appropriate chord or right-triangle construction. Likewise, an expression of the form
+\[
+\beta=\arcsin s
+\]
+means that an angle \(\beta\) is constructed whose sine length is the already constructed length \(s\), provided \(|s|\le 1\) on the chosen reference circle. In this sense, the analytic notation records the geometry of the operation rather than replacing it.
+
+\begin{lemma}[Euclidean realization of the inverse-sine step]
+\label{lem:inverse-sine-euclidean}
+
+Let \(s\) be a constructed directed length on a fixed reference circle of radius \(R\), with
+\[
+|s|\le R.
+\]
+Then one can construct an angle \(\beta\) satisfying
+\[
+\sin\beta=\frac{s}{R}.
+\]
+Consequently, any correction term of the form
+\[
+2\arcsin\!\left(\frac{s}{R}\right)
+\]
+is Euclidean, provided the constructed length satisfies \(|s|\le R\). For a unit reference circle this becomes \(2\arcsin s\), with \(|s|\le 1\).
+
+\end{lemma}
+
+\begin{proof}
+Choose a reference circle of radius \(R\) centered at \(O\), and let the horizontal diameter be the reference axis. Construct a line parallel to the reference axis at directed distance \(s\) from it. Since \(|s|\le R\), this line intersects the circle; let \(Q\) be one of the intersection points.
+
+Join \(O\) to \(Q\), and let \(\beta\) be the directed angle from the reference axis to the radius \(OQ\). The resulting right triangle has hypotenuse \(R\) and opposite side \(s\), so
+\[
+\sin\beta=\frac{s}{R}.
+\]
+Thus \(\beta\) is constructed without evaluating an inverse sine analytically. Doubling \(\beta\) is obtained by copying the angle consecutively on the same side of a reference ray.
+\end{proof}
+
+\section{The Seed Construction}
+
+Let $\theta$ be the given angle.  The basic construction produces an angle $D$ satisfying
+\[
+\cos D
+=
+1-\frac{16}{9}\left(1-\cos\frac{\theta}{4}\right).
+\]
+Using the identity
+\[
+1-\cos x
+=
+2\sin^2\frac{x}{2},
+\]
+this can also be written as
+\[
+D(\theta)
+=
+2\arcsin\!\left(
+\frac43\sin\frac{\theta}{8}
+\right),
+\]
+on the corresponding principal branch.  This form is particularly useful because it shows
+the same structure that later appears in the residual correction.
+
+\subsection{Euclidean realization of the seed}
+
+The seed is constructible by classical straightedge-and-compass operations:
+\begin{enumerate}[label=\arabic*.]
+\item Construct $\theta/8$ by three successive bisections.
+\item On a reference circle, construct the sine length $\sin(\theta/8)$.
+\item Scale this length by $4/3$ using similar triangles.
+\item Construct an angle $\alpha$ satisfying
+\[
+\sin\alpha
+=
+\frac43\sin\frac{\theta}{8}.
+\]
+\item Set
+\[
+D=2\alpha.
+\]
+\end{enumerate}
+The construction is real on the principal branch whenever
+\[
+\left|\frac43\sin\frac{\theta}{8}\right|
+\le 1.
+\]
+This condition is automatically satisfied for the usual range of ordinary angles
+$0\le \theta\le \pi$.
+
+\begin{theorem}[Seed expansion]\label{thm:seed}
+For sufficiently small $\theta$,
+\[
+D(\theta)
+=
+\frac{\theta}{3}
++
+\frac{7}{10368}\theta^3
++
+\frac{7}{884736}\theta^5
++
+\frac{4969}{45864714240}\theta^7
++
+O(\theta^9).
+\]
+In particular,
+\[
+D(\theta)-\frac{\theta}{3}
+=
+\frac{7}{10368}\theta^3+O(\theta^5).
+\]
+\end{theorem}
+
+\begin{proof}
+Using
+\[
+D(\theta)
+=
+2\arcsin\!\left(
+\frac43\sin\frac{\theta}{8}
+\right),
+\]
+expand
+\[
+\sin\frac{\theta}{8}
+=
+\frac{\theta}{8}
+-
+\frac{1}{6}\left(\frac{\theta}{8}\right)^3
++
+\frac{1}{120}\left(\frac{\theta}{8}\right)^5
+-
+\frac{1}{5040}\left(\frac{\theta}{8}\right)^7
++
+O(\theta^9),
+\]
+and compose with
+\[
+\arcsin x
+=
+x+\frac{x^3}{6}+\frac{3x^5}{40}+\frac{5x^7}{112}+O(x^9).
+\]
+Exact formal composition gives the displayed expansion.
+\end{proof}
+
+\begin{remark}[Signed branch]
+For a two-sided local expansion, define the signed seed by
+\[
+D_{\mathrm{sgn}}(\theta)
+=
+\operatorname{sgn}(\theta)
+\arccos\!\left(
+1-\frac{16}{9}\left(1-\cos\frac{\theta}{4}\right)
+\right).
+\]
+Equivalently, use the branch of
+\[
+2\arcsin\!\left(\frac43\sin\frac{\theta}{8}\right)
+\]
+that is odd near $\theta=0$.  With this convention the error expansion contains only odd
+powers of $\theta$.
+\end{remark}
+
+\section{The Residual Correction Step}
+
+Let $A$ be a constructible approximation to $\theta/3$. Define its signed error by
+\[
+e=A-\frac{\theta}{3}.
+\]
+Then the residual angle is
+\[
+\rho=3A-\theta=3e.
+\]
+Since $A$ and $\theta$ are constructible angles, $\rho$ is also constructible by angle copying, addition, and subtraction.
+
+Define the corrected approximation by
+\[
+A^+
+=
+A
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3A-\theta}{8}
+\right).
+\]
+By Lemma~\ref{lem:inverse-sine-euclidean}, the expression
+\[
+\arcsin\!\left(
+\frac43\sin\frac{\rho}{8}
+\right)
+\]
+is not used as a numerical inverse trigonometric function.  It denotes the
+Euclidean recovery of an angle from a previously constructed scaled sine length.
+Thus the correction step is a straightedge-and-compass construction whenever
+\[
+\left|
+\frac43\sin\frac{\rho}{8}
+\right|
+\le 1.
+\]
+In terms of the error $e$, this gives
+\[
+A^+-\frac{\theta}{3}
+=
+\Rop(e),
+\]
+where
+\[
+\Rop(e)
+=
+e
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3e}{8}
+\right).
+\]
+
+\subsection{Euclidean realization of the correction}
+
+The expression
+\[
+2\arcsin\!\left(
+\frac43\sin\frac{3A-\theta}{8}
+\right)
+\]
+should not be interpreted as a numerical black box.  It records the following Euclidean
+operation.
+
+Construct
+\[
+\rho=3A-\theta.
+\]
+Bisect three times to construct $\rho/8$.  On a reference circle, construct the sine length
+\[
+\sin\frac{\rho}{8}.
+\]
+Scale that length by $4/3$.  If
+\[
+\left|\frac43\sin\frac{\rho}{8}\right|
+\le 1,
+\]
+construct an angle $\beta$ satisfying
+\[
+\sin\beta
+=
+\frac43\sin\frac{\rho}{8}.
+\]
+Then $2\beta$ is constructible, and the corrected angle is
+\[
+A^+=A-2\beta.
+\]
+Thus the correction step is a straightedge-and-compass operation whenever the scaled sine
+length lies in the real principal domain.
+
+In terms of the error $e$, the sufficient principal-domain condition is
+\[
+\left|\frac43\sin\frac{3e}{8}\right|
+\le 1.
+\]
+A convenient local sufficient condition is
+\[
+|e|
+\le
+\frac83\arcsin\frac34.
+\]
+
+The construction and its error estimates are valid only within the stated local domain, where the residual correction remains real and the branch choices are unambiguous.
+
+\begin{theorem}[Cubic residual law]\label{thm:residual}
+The residual operator
+\[
+\Rop(e)
+=
+e
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3e}{8}
+\right)
+\]
+has the local expansion
+\[
+\Rop(e)
+=
+-\frac{7}{384}e^3
+-
+\frac{63}{32768}e^5
+-
+\frac{4969}{20971520}e^7
++
+O(e^9).
+\]
+In particular,
+\[
+\Rop(e)
+=
+-\frac{7}{384}e^3+O(e^5).
+\]
+\end{theorem}
+
+\begin{proof}
+Expand
+\[
+\sin\frac{3e}{8}
+=
+\frac{3e}{8}
+-
+\frac{1}{6}\left(\frac{3e}{8}\right)^3
++
+\frac{1}{120}\left(\frac{3e}{8}\right)^5
+-
+\frac{1}{5040}\left(\frac{3e}{8}\right)^7
++
+O(e^9),
+\]
+then multiply by $4/3$ and compose with the Maclaurin expansion for $\arcsin$.
+This gives
+\[
+2\arcsin\!\left(
+\frac43\sin\frac{3e}{8}
+\right)
+=
+e
++
+\frac{7}{384}e^3
++
+\frac{63}{32768}e^5
++
+\frac{4969}{20971520}e^7
++
+O(e^9).
+\]
+Subtracting this expression from $e$ gives the result.
+\end{proof}
+
+\section{The Trisection Cascade}
+
+Set
+\[
+A_0=D.
+\]
+For $n\ge 0$, define
+\[
+A_{n+1}
+=
+A_n
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3A_n-\theta}{8}
+\right).
+\]
+The first two refined approximations are
+\[
+I=A_1,
+\qquad
+M=A_2.
+\]
+Let
+\[
+e_n=A_n-\frac{\theta}{3}.
+\]
+Then
+\[
+e_{n+1}=\Rop(e_n).
+\]
+
+\begin{theorem}[Cubic error cascade]\label{thm:cascade}
+The seed and first two corrected approximations satisfy
+\[
+D-\frac{\theta}{3}=O(\theta^3),
+\]
+\[
+I-\frac{\theta}{3}=O(\theta^9),
+\]
+and
+\[
+M-\frac{\theta}{3}=O(\theta^{27}).
+\]
+More precisely,
+\[
+D-\frac{\theta}{3}
+=
+\frac{7}{10368}\theta^3+O(\theta^5),
+\]
+\[
+I-\frac{\theta}{3}
+=
+-
+\frac{2401}{427972821516288}\theta^9
++
+O(\theta^{11}),
+\]
+and
+\[
+M-\frac{\theta}{3}
+=
+\frac{7^{13}}{384^4\,10368^9}\theta^{27}
++
+O(\theta^{29}).
+\]
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:seed} gives
+\[
+e_0
+=
+\frac{7}{10368}\theta^3+O(\theta^5).
+\]
+By Theorem~\ref{thm:residual},
+\[
+e_1
+=
+-\frac{7}{384}e_0^3+O(e_0^5).
+\]
+Therefore
+\[
+e_1
+=
+-\frac{7}{384}\left(\frac{7}{10368}\right)^3\theta^9
++
+O(\theta^{11}),
+\]
+which simplifies to
+\[
+e_1
+=
+-
+\frac{2401}{427972821516288}\theta^9
++
+O(\theta^{11}).
+\]
+Applying the same residual law to $e_1$ gives
+\[
+e_2
+=
+-\frac{7}{384}e_1^3+O(e_1^5)
+=
+O(\theta^{27}).
+\]
+Substituting the leading term of $e_1$ gives
+\[
+e_2
+=
+\frac{7^{13}}{384^4\,10368^9}\theta^{27}
++
+O(\theta^{29}).
+\]
+\end{proof}
+
+\begin{corollary}[Order sequence]
+If the initial seed error is $O(\theta^3)$ and each refinement remains in the local
+principal domain, then the successive local error orders are
+\[
+3,\quad 9,\quad 27,\quad 81,\ldots .
+\]
+After $n$ residual corrections, the local error order is $3^{n+1}$.
+\end{corollary}
+
+\section{Constructibility Status}
+
+The angles $D$, $I$, $M$, and all later $A_n$ are constructible approximants, subject to
+the stated real-domain condition at each residual step.  The formulas involving $\sin$ and
+$\arcsin$ do not require numerical evaluation of transcendental functions.  They encode
+Euclidean operations on a reference circle.
+
+The distinction is important.  The method constructs a sequence of angles converging
+rapidly to $\theta/3$ in the local asymptotic regime.  It does not imply that the exact
+angle $\theta/3$ is constructible for arbitrary $\theta$.  Therefore the construction is
+consistent with Wantzel's theorem.
+
+\begin{remark}[Finite stage versus limiting value]
+Each finite stage $A_n$ is obtained by finitely many straightedge-and-compass operations.
+The limiting value
+\[
+\lim_{n\to\infty}A_n
+=
+\frac{\theta}{3}
+\]
+when convergence holds, is not thereby a finite Euclidean construction of $\theta/3$.
+Classical constructibility concerns finite constructions, not limits of improving
+constructible approximants.
+\end{remark}
+
+\section{Numerical Consistency Check}
+\label{sec:numerical-check}
+
+The preceding theorems are proved by exact formal series composition and do not depend on numerical evidence. The calculations below are included only as a consistency check and to illustrate the size of the errors at representative input angles. All formulae are evaluated in radians, and the final absolute errors are converted to degrees for display.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rrrr}
+\toprule
+$\theta$ in degrees & $|D-\theta/3|$ & $|I-\theta/3|$ & $|M-\theta/3|$ \\
+\midrule
+$1$   & $2.06\times 10^{-7}$  & $4.83\times 10^{-26}$ & $6.26\times 10^{-82}$ \\
+$60$  & $4.50\times 10^{-2}$  & $5.06\times 10^{-10}$ & $7.20\times 10^{-34}$ \\
+$120$ & $3.75\times 10^{-1}$  & $2.92\times 10^{-7}$  & $1.39\times 10^{-25}$ \\
+$210$ & $2.27$                & $6.53\times 10^{-5}$  & $1.55\times 10^{-18}$ \\
+\bottomrule
+\end{tabular}
+\caption{Representative absolute degree errors for the seed and first two residual corrections.}
+\label{tab:numerical}
+\end{table}
+
+The table is intended for illustration rather than proof. It shows the scale of the error reduction at representative small, moderate, and large input angles.
+
+\section{Comparison with Exact Trisection}
+
+The construction should be compared with exact trisection only with care.  Exact
+straightedge-and-compass trisection of an arbitrary angle is impossible.  The present
+method does not evade that theorem.  Instead, it gives a sequence of finite Euclidean
+approximants.
+
+The essential comparison is therefore not
+\[
+\text{approximate construction versus exact impossible construction},
+\]
+but rather
+\[
+\text{seed approximation versus cubic residual refinement}.
+\]
+The mathematical content is the transition from the seed law
+\[
+D-\frac{\theta}{3}=O(\theta^3)
+\]
+to the residual cascade
+\[
+e_{n+1}
+=
+-\frac{7}{384}e_n^3+O(e_n^5).
+\]
+
+\section{Conclusion}
+
+The construction consists of a Euclidean seed approximation and a Euclidean residual
+correction.  The seed satisfies
+\[
+D-\frac{\theta}{3}
+=
+\frac{7}{10368}\theta^3+O(\theta^5),
+\]
+and the residual correction satisfies
+\[
+e_{n+1}
+=
+-\frac{7}{384}e_n^3+O(e_n^5).
+\]
+Thus the error order rises cubically under iteration:
+\[
+3,\quad 9,\quad 27,\quad 81,
+\ldots .
+\]
+The resulting angles are constructible approximants to $\theta/3$.  The exact trisection
+of an arbitrary angle remains impossible by finite straightedge-and-compass construction.
+
+\appendix
+
+\section{Exact Series Coefficients}
+
+The seed expansion begins
+\[
+D(\theta)
+=
+\frac{\theta}{3}
++
+\sum_{\substack{p\ge 3\\ p\,\mathrm{odd}}}c_p\theta^p.
+\]
+The first coefficients are
+\[
+c_3=\frac{7}{10368},
+\]
+\[
+c_5=\frac{7}{884736},
+\]
+\[
+c_7=\frac{4969}{45864714240}.
+\]
+
+The residual expansion begins
+\[
+\Rop(e)
+=
+\sum_{\substack{p\ge 3\\ p\,\mathrm{odd}}}r_p e^p,
+\]
+with
+\[
+r_3=-\frac{7}{384},
+\]
+\[
+r_5=-\frac{63}{32768},
+\]
+\[
+r_7=-\frac{4969}{20971520}.
+\]
+
+These rational coefficients follow from formal composition of the Maclaurin series for
+$\sin x$ and $\arcsin x$.
+
+\section{Symbolic Verification Recipe}
+\label{app:symbolic-verification}
+
+The following symbolic computation verifies the displayed seed and residual
+coefficients.  It is included only as a reproducibility aid; the proofs above use
+the same formal series composition by hand.
+
+\begin{verbatim}
+import sympy as sp
+
+x = sp.symbols('x')
+
+D = 2*sp.asin(sp.Rational(4, 3)*sp.sin(x/8))
+print(sp.series(D, x, 0, 9))
+
+R = x - 2*sp.asin(sp.Rational(4, 3)*sp.sin(3*x/8))
+print(sp.series(R, x, 0, 9))
+\end{verbatim}
+
+The output is:
+
+\begin{verbatim}
+x/3 + 7*x**3/10368 + 7*x**5/884736
+    + 4969*x**7/45864714240 + O(x**9)
+
+-7*x**3/384 - 63*x**5/32768
+    - 4969*x**7/20971520 + O(x**9)
+\end{verbatim}
+
+\section{Reproducibility Code for the Numerical Consistency Check}
+\label{app:numerical-code}
+
+This appendix records the short high-precision computation used to reproduce
+Table~\ref{tab:numerical}.  The computation is not used as evidence for the
+theorems.  The theorems follow from exact formal series composition; the
+numerical output is included only as a consistency check and as a reproducibility
+record.
+
+The input angles are listed in degrees, but each angle is first converted to
+radians before applying the formulae
+\[
+D
+=
+2\arcsin\!\left(
+\frac43\sin\frac{\theta}{8}
+\right),
+\]
+\[
+I
+=
+D
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3D-\theta}{8}
+\right),
+\]
+and
+\[
+M
+=
+I
+-
+2\arcsin\!\left(
+\frac43\sin\frac{3I-\theta}{8}
+\right).
+\]
+
+\newpage
+The final absolute errors are then converted back to degrees.
+
+\begin{verbatim}
+import mpmath as mp
+
+mp.mp.dps = 100
+
+angles_deg = [mp.mpf('1'), mp.mpf('60'), mp.mpf('120'), mp.mpf('210')]
+
+for deg in angles_deg:
+    theta = mp.radians(deg)
+
+    D = 2*mp.asin(mp.mpf(4)/3 * mp.sin(theta/8))
+    I = D - 2*mp.asin(mp.mpf(4)/3 * mp.sin((3*D - theta)/8))
+    M = I - 2*mp.asin(mp.mpf(4)/3 * mp.sin((3*I - theta)/8))
+
+    errors = [
+        abs((D - theta/3) * 180/mp.pi),
+        abs((I - theta/3) * 180/mp.pi),
+        abs((M - theta/3) * 180/mp.pi),
+    ]
+
+    print(mp.nstr(deg, 8),
+          mp.nstr(errors[0], 12),
+          mp.nstr(errors[1], 12),
+          mp.nstr(errors[2], 12))
+\end{verbatim}
+
+The output is:
+
+\begin{verbatim}
+1.0   2.05664501385e-7   4.83058314634e-26   6.25922028464e-82
+60.0  0.0450029780958    5.06110493929e-10   7.1987580572e-34
+120.0 0.374831118878     2.92435726743e-7    1.38871407782e-25
+210.0 2.27403434607      6.53107651339e-5    1.54694853617e-18
+\end{verbatim}
+
+Rounded to the number of significant figures displayed in
+Table~\ref{tab:numerical}, this gives
+\[
+\begin{array}{c|ccc}
+\theta & |D-\theta/3| & |I-\theta/3| & |M-\theta/3| \\
+\hline
+1^\circ   & 2.06\times 10^{-7} & 4.83\times 10^{-26} & 6.26\times 10^{-82} \\
+60^\circ  & 4.50\times 10^{-2} & 5.06\times 10^{-10} & 7.20\times 10^{-34} \\
+120^\circ & 3.75\times 10^{-1} & 2.92\times 10^{-7}  & 1.39\times 10^{-25} \\
+210^\circ & 2.27                & 6.53\times 10^{-5}  & 1.55\times 10^{-18}
+\end{array}
+\]
+
+\begin{thebibliography}{9}
+
+\bibitem{Wantzel1837}
+P. L. Wantzel,
+``Recherches sur les moyens de reconnaître si un problème de géométrie peut se résoudre avec la règle et le compas,''
+\emph{Journal de Mathématiques Pures et Appliquées}, vol. 2, pp. 366--372, 1837.
+
+\bibitem{RostamianBaker}
+R. Rostamian,
+``Trisection of an angle -- Baker's method,''
+University of Maryland, Baltimore County.
+\url{https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html}
+
+\bibitem{Dudley1987}
+U. Dudley,
+\emph{A Budget of Trisections}.
+Springer, 1987.
+
+\end{thebibliography}
+
+\end{document}
