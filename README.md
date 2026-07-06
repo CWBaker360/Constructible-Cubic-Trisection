@@ -57,6 +57,7 @@ Top-level files:
 
 Paper source:
 
+* `paper/constructible_cubic_trisection.pdf`
 * `paper/constructible_cubic_trisection.tex`
 * `paper/README.md`
 
