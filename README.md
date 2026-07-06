@@ -58,17 +58,15 @@ The trigonometric notation in the paper is an analytic model of Euclidean operat
 
 The main source file is:
 
-```text
-paper/constructible_cubic_trisection.tex
-```
+`paper/constructible_cubic_trisection.tex`
 
-A standard LaTeX installation should compile the paper. For example:
+A standard LaTeX installation should compile the paper. For example, from inside the `paper` folder, run:
 
-```bash
-cd paper
-pdflatex constructible_cubic_trisection.tex
-pdflatex constructible_cubic_trisection.tex
-```
+`pdflatex constructible_cubic_trisection.tex`
+
+Then run it a second time:
+
+`pdflatex constructible_cubic_trisection.tex`
 
 Run LaTeX twice so cross-references and bibliography labels settle correctly.
 
@@ -86,8 +84,3 @@ For a research repository, one common arrangement is:
 * an open-source software license for any scripts.
 
 Choose the license before public release.
-
-* an open-source software license for any scripts.
-
-Choose the license before public release.
-
