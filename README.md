@@ -14,33 +14,17 @@ The paper describes a straightedge-and-compass construction that produces a cons
 
 The seed construction satisfies
 
-$$
-D(\theta)-\frac{\theta}{3}
-=
-\frac{7}{10368}\theta^3+O(\theta^5),
-$$
+$$D(\theta)-\frac{\theta}{3}=\frac{7}{10368}\theta^3+O(\theta^5),$$
 
 with angles measured in radians for the asymptotic formulae.
 
 The residual correction operator is written analytically as
 
-$$
-\mathscr{R}(e)
-=
-e
--
-2\arcsin\!\left(
-\frac43\sin\frac{3e}{8}
-\right),
-$$
+$$\mathscr{R}(e)=e-2\arcsin\left(\frac43\sin\frac{3e}{8}\right),$$
 
 and has local expansion
 
-$$
-\mathscr{R}(e)
-=
--\frac{7}{384}e^3+O(e^5).
-$$
+$$\mathscr{R}(e)=-\frac{7}{384}e^3+O(e^5).$$
 
 Consequently, repeated correction raises the local error order cubically. Starting from a seed error of order $O(\theta^3)$, the first and second corrected approximants have errors of order $O(\theta^9)$ and $O(\theta^{27})$, respectively.
 
@@ -69,37 +53,3 @@ The trigonometric notation in the paper is an analytic model of Euclidean operat
 │   └── repository_description.md
 ├── figures/
 └── scripts/
-```
-
-## Build instructions
-
-The main source file is:
-
-```text
-paper/constructible_cubic_trisection.tex
-```
-
-A standard LaTeX installation should compile the paper. For example:
-
-```bash
-cd paper
-pdflatex constructible_cubic_trisection.tex
-pdflatex constructible_cubic_trisection.tex
-```
-
-Run LaTeX twice so cross-references and bibliography labels settle correctly.
-
-## Citation
-
-A citation file is included at `CITATION.cff`. GitHub will use this file to show a **Cite this repository** button.
-
-## License
-
-No final license has been selected in this starter package. See `LICENSE_NOTICE.md` before making the repository public.
-
-For a research repository, one common arrangement is:
-
-- a Creative Commons license for the paper text, and
-- an open-source software license for any scripts.
-
-Choose the license before public release.
