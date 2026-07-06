@@ -1,7 +1,7 @@
 # A Constructible Cubic Error Cascade for Approximate Angle Trisection
 
-**Author:** Wayne Baker
-**Date:** July 2, 2026
+**Author:** Wayne Baker  
+**Date:** July 2, 2026  
 **Status:** Preprint / source archive
 
 This repository contains the LaTeX source and supporting documentation for the paper **A Constructible Cubic Error Cascade for Approximate Angle Trisection**.
