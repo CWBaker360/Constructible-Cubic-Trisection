@@ -53,3 +53,37 @@ The trigonometric notation in the paper is an analytic model of Euclidean operat
 │   └── repository_description.md
 ├── figures/
 └── scripts/
+
+## Build instructions
+
+The main source file is:
+
+```text
+paper/constructible_cubic_trisection.tex
+```
+
+A standard LaTeX installation should compile the paper. For example:
+
+```bash
+cd paper
+pdflatex constructible_cubic_trisection.tex
+pdflatex constructible_cubic_trisection.tex
+```
+
+Run LaTeX twice so cross-references and bibliography labels settle correctly.
+
+## Citation
+
+A citation file is included at `CITATION.cff`. GitHub will use this file to show a **Cite this repository** button.
+
+## License
+
+No final license has been selected in this starter package. See `LICENSE_NOTICE.md` before making the repository public.
+
+For a research repository, one common arrangement is:
+
+* a Creative Commons license for the paper text, and
+* an open-source software license for any scripts.
+
+Choose the license before public release.
+
