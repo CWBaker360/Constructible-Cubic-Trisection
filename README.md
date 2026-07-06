@@ -107,3 +107,8 @@ For a research repository, one common arrangement is:
 
 Choose the license before public release.
 
+* a Creative Commons license for the paper text, and
+* an open-source software license for any scripts.
+
+Choose the license before public release.
+
