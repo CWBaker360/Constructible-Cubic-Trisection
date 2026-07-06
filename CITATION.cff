@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it using the metadata from this file."
+title: "A Constructible Cubic Error Cascade for Approximate Angle Trisection"
+authors:
+  - family-names: "Baker"
+    given-names: "Wayne"
+date-released: 2026-07-02
+version: "preprint-v1"
+type: article
+abstract: "This paper describes a straightedge-and-compass construction producing a constructible approximation to one third of a given angle, together with a Euclidean residual correction step whose local expansion is cubic. The work does not claim exact trisection of an arbitrary angle; it studies an arbitrarily refinable constructible approximation."
+keywords:
+  - approximate angle trisection
+  - straightedge and compass
+  - constructible approximation
+  - cubic error cascade
+  - Euclidean construction
+  - asymptotic error analysis
