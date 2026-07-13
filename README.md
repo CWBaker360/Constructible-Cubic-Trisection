@@ -99,3 +99,13 @@ Copyright © 2026 Wayne Baker. All rights reserved unless otherwise stated.
 No permission is granted to reproduce, redistribute, modify, sublicense, or republish the paper text, LaTeX source, figures, or supporting documentation without written permission from the author.
 
 If verification scripts are added later, they may be released under a separate open-source software license.
+
+## General proportional-subtended theory
+
+The parameterized local refinement law underlying the \(4:3\) branch is developed in:
+
+> **A Local Cubic Refinement Law for Proportional-Subtended Angle Division**
+
+Repository:
+
+https://github.com/CWBaker360/proportional-subtended-cubic-refinement
