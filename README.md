@@ -109,3 +109,10 @@ The parameterized local refinement law underlying the \(4:3\) branch is develope
 Repository:
 
 https://github.com/CWBaker360/proportional-subtended-cubic-refinement
+
+## Independent analysis and historical reference
+
+Rouben Rostamian of UMBC provides an independent description and error analysis of Wayne Baker's approximate angle-trisection construction:
+
+- [An Angle Trisection — Wayne Baker's construction](https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html)
+- [Interactive Modular Trisection App](https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker-javascript.html)
