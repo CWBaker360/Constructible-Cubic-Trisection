@@ -1,15 +1,13 @@
-# License Notice
+Copyright © 2026 Wayne Baker
 
-Copyright © 2026 Wayne Baker.
+This repository contains both research documents and software.
 
-All rights reserved unless otherwise stated.
+Paper text, figures, documentation and supplementary written material
+are licensed under the Creative Commons Attribution 4.0 International
+License (CC BY 4.0).
 
-This repository is provided as a source archive for reading, citation, and verification of the paper:
+Source code is licensed under the MIT License.
 
-**A Constructible Cubic Error Cascade for Approximate Angle Trisection**
+Please see LICENSE and LICENSE-PAPER.md for the complete license terms.
 
-No permission is granted to reproduce, redistribute, modify, sublicense, or republish the paper text, LaTeX source, figures, or supporting documentation without written permission from the author.
-
-If verification scripts are added later, they may be released under a separate open-source software license.
-
-This notice may be replaced by a formal license in a future release.
+Part of the Geometric Approximation Theory research series.
