@@ -12,7 +12,7 @@
 
 This repository contains the complete research source for the paper
 
-> **A Constructible Cubic Error Cascade for Approximate Angle Trisection**
+> ***A Constructible Cubic Error Cascade for Approximate Angle Trisection***
 
 including the LaTeX manuscript, compiled PDF, and supporting documentation.
 
@@ -240,3 +240,5 @@ An independent mathematical analysis of the construction is available from **Rou
 © 2026 Wayne Baker
 
 Part of the **Geometric Approximation Theory** research series.
+
+All repository metadata, documentation, and licensing information are maintained alongside each published release.
