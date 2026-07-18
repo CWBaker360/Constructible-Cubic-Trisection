@@ -1,10 +1,21 @@
 # Paper Source
 
-This folder contains the LaTeX source and compiled PDF for:
+This folder contains the source and compiled preprint for:
 
-**A Constructible Cubic Error Cascade for Approximate Angle Trisection**
+> **A Constructible Cubic Error Cascade for Approximate Angle Trisection**
 
 Files:
 
-- `constructible_cubic_trisection.tex`
-- `constructible_cubic_trisection.pdf`
+```text
+constructible_cubic_trisection.tex
+constructible_cubic_trisection.pdf
+```
+
+Compile with:
+
+```bash
+pdflatex constructible_cubic_trisection.tex
+pdflatex constructible_cubic_trisection.tex
+```
+
+The manuscript includes exact derivations, a numerical consistency table, and compact reproducibility code. Standalone versions of the verification programs are supplied in the repository-level `scripts/` folder.

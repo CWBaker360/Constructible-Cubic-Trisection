@@ -1,20 +1,20 @@
 # Repository Description
 
-## Suggested repository name
+## Repository name
 
 ```text
 constructible-cubic-trisection
 ```
 
-## Suggested GitHub description
+## GitHub About description
 
 ```text
-A straightedge-and-compass constructible cubic error cascade for approximate angle trisection.
+A constructible cubic error cascade for approximate angle trisection.
 ```
 
 ## Longer description
 
-This repository archives the LaTeX source and supporting documentation for Wayne Baker's paper *A Constructible Cubic Error Cascade for Approximate Angle Trisection*. The paper studies a constructible approximation to \(\theta/3\), proves a seed error law of order \(O(\theta^3)\), and derives a Euclidean residual correction step with cubic local error behavior. The method gives an arbitrarily refinable approximation cascade while preserving the classical impossibility of exact arbitrary angle trisection by straightedge and compass.
+This repository archives Wayne Baker's preprint *A Constructible Cubic Error Cascade for Approximate Angle Trisection*, together with its LaTeX source, exact symbolic verification, high-precision numerical checks, citation metadata, and supporting documentation. The paper proves a cubic seed error and a locally cubic residual correction law, producing finite constructible approximants with local error orders \(3,9,27,\ldots\) while preserving the classical impossibility of exact arbitrary-angle trisection.
 
 ## Suggested topics
 
@@ -24,7 +24,7 @@ angle-trisection
 straightedge-and-compass
 constructible-geometry
 asymptotic-analysis
+cubic-convergence
 error-cascade
-latex
 mathematics
 ```

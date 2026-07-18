@@ -1,26 +1,30 @@
-cff-version: "1.2.0"
-message: "If you use this work, please cite the paper described in preferred-citation."
-title: "Constructible Cubic Trisection Repository"
+cff-version: 1.2.0
+message: "If you use this repository, please cite the paper listed under preferred-citation."
+type: software
+title: "A Constructible Cubic Error Cascade for Approximate Angle Trisection: Research Source Archive"
+version: "1.0.0"
+date-released: 2026-07-18
+url: "https://github.com/CWBaker360/constructible-cubic-trisection"
+repository-code: "https://github.com/CWBaker360/constructible-cubic-trisection"
 authors:
   - family-names: "Baker"
-    given-names: "C. Wayne"
-version: "preprint-v1"
-date-released: "2026-07-02"
-repository-code: "https://github.com/CWBaker360/constructible-cubic-trisection"
-abstract: "Source, compiled paper, and reproducibility materials for A Constructible Cubic Error Cascade for Approximate Angle Trisection."
+    given-names: "Wayne"
+abstract: >-
+  Research source archive for a straightedge-and-compass approximation to angle
+  trisection, including the manuscript, LaTeX source, exact symbolic checks,
+  high-precision numerical checks, and supporting documentation.
 keywords:
-  - "approximate angle trisection"
-  - "straightedge and compass"
-  - "constructible approximation"
-  - "cubic error cascade"
-  - "Euclidean construction"
-  - "asymptotic error analysis"
-
+  - approximate angle trisection
+  - straightedge and compass
+  - constructible approximation
+  - cubic error cascade
+  - Euclidean construction
+  - asymptotic error analysis
 preferred-citation:
-  type: article
+  type: unpublished
   title: "A Constructible Cubic Error Cascade for Approximate Angle Trisection"
   authors:
     - family-names: "Baker"
-      given-names: "C. Wayne"
+      given-names: "Wayne"
   year: 2026
   url: "https://github.com/CWBaker360/constructible-cubic-trisection/blob/main/paper/constructible_cubic_trisection.pdf"

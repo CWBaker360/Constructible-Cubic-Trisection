@@ -5,7 +5,6 @@
 \usepackage{mathtools}
 \usepackage{mathrsfs}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
@@ -17,7 +16,11 @@
   colorlinks=true,
   linkcolor=blue!50!black,
   citecolor=blue!50!black,
-  urlcolor=blue!50!black
+  urlcolor=blue!50!black,
+  pdftitle={A Constructible Cubic Error Cascade for Approximate Angle Trisection},
+  pdfauthor={Wayne Baker},
+  pdfsubject={Constructible approximation and cubic residual refinement for angle trisection},
+  pdfkeywords={approximate angle trisection, constructible geometry, cubic error cascade}
 }
 
 \newtheorem{theorem}{Theorem}
@@ -32,10 +35,14 @@
 
 \title{A Constructible Cubic Error Cascade for Approximate Angle Trisection}
 \author{Wayne Baker}
-\date{July 2, 2026}
+\date{July 2, 2026\\[2pt]\small Version 1.0.0}
 
 \begin{document}
 \maketitle
+
+\begin{center}
+\small Research source archive: \url{https://github.com/CWBaker360/constructible-cubic-trisection}
+\end{center}
 
 \begin{abstract}
 We describe a straightedge-and-compass construction producing a constructible approximation
@@ -84,7 +91,9 @@ The technical sections below make this precise. Section~\ref{sec:euclidean-preli
 
 \section{Introduction}
 
-Exact trisection of an arbitrary angle is impossible by straightedge and compass alone. This classical result, usually traced to Wantzel, concerns exact Euclidean constructibility. The present paper addresses a different problem: the construction of high-order approximations to \(\theta/3\).
+Exact trisection of an arbitrary angle is impossible by straightedge and compass alone. This classical result, established by Wantzel, concerns exact Euclidean constructibility~\cite{Wantzel1837}; for broader historical context, see Dudley~\cite{Dudley1987}. The present paper addresses a different problem: the construction of high-order approximations to \(\theta/3\).
+
+The seed construction and its first iterative improvement were analyzed in Rostamian's exposition of Baker's method~\cite{RostamianBaker}. The present paper formulates the mechanism as a residual operator, derives its local cubic law, and records the resulting finite-stage error cascade.
 
 The method has two components. First, a Euclidean seed angle \(D\) is constructed from the given angle \(\theta\). Second, a residual correction is applied to the remaining signed error. Although the correction is written compactly with \(\sin\) and \(\arcsin\), the formula is only an analytic model of the construction rather than a numerical prescription. Geometrically, the sine term is represented by a directed length on a reference circle; the factor \(4/3\) is realized by similar triangles; and the inverse-sine step is obtained by constructing a right triangle and recovering its angle.
 
@@ -578,7 +587,7 @@ Euclidean operations on a reference circle.
 The distinction is important.  The method constructs a sequence of angles converging
 rapidly to $\theta/3$ in the local asymptotic regime.  It does not imply that the exact
 angle $\theta/3$ is constructible for arbitrary $\theta$.  Therefore the construction is
-consistent with Wantzel's theorem.
+consistent with Wantzel's theorem~\cite{Wantzel1837}.
 
 \begin{remark}[Finite stage versus limiting value]
 Each finite stage $A_n$ is obtained by finitely many straightedge-and-compass operations.
@@ -713,7 +722,8 @@ $\sin x$ and $\arcsin x$.
 
 The following symbolic computation verifies the displayed seed and residual
 coefficients.  It is included only as a reproducibility aid; the proofs above use
-the same formal series composition by hand.
+the same formal series composition by hand. A standalone version is supplied in
+\texttt{scripts/verify\_series.py}.
 
 \begin{verbatim}
 import sympy as sp
@@ -741,7 +751,8 @@ x/3 + 7*x**3/10368 + 7*x**5/884736
 \label{app:numerical-code}
 
 This appendix records the short high-precision computation used to reproduce
-Table~\ref{tab:numerical}.  The computation is not used as evidence for the
+Table~\ref{tab:numerical}. A standalone version is supplied in
+\texttt{scripts/numerical\_consistency\_check.py}. The computation is not used as evidence for the
 theorems.  The theorems follow from exact formal series composition; the
 numerical output is included only as a consistency check and as a reproducibility
 record.
@@ -826,6 +837,7 @@ Table~\ref{tab:numerical}, this gives
 \end{array}
 \]
 
+\small
 \begin{thebibliography}{9}
 
 \bibitem{Wantzel1837}
@@ -833,18 +845,19 @@ P. L. Wantzel,
 ``Recherches sur les moyens de reconnaître si un problème de géométrie peut se résoudre avec la règle et le compas,''
 \emph{Journal de Mathématiques Pures et Appliquées}, vol. 2, pp. 366--372, 1837.
 
-\bibitem{RostamianBaker}
-R. Rostamian,
-``Trisection of an Angle---Baker's Method,''
-University of Maryland, Baltimore County.
-\href{https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html}
-{Online analysis and construction}.
-
 \bibitem{Dudley1987}
 U. Dudley,
 \emph{A Budget of Trisections}.
-Springer, 1987.
+Springer-Verlag, New York, 1987.
+
+\bibitem{RostamianBaker}
+R. Rostamian,
+``An angle trisection: Construction by Wayne Baker,''
+University of Maryland, Baltimore County, 2010; updated August 2025.
+\url{https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html}
+(accessed July 18, 2026).
 
 \end{thebibliography}
+\normalsize
 
 \end{document}

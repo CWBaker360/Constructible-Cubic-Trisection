@@ -1,244 +1,150 @@
+<p align="center">
+  <img src="assets/Repo01_constructible-cubic-trisection.png"
+       alt="Infographic summarizing the constructible cubic error cascade for approximate angle trisection"
+       width="760">
+</p>
+
 # A Constructible Cubic Error Cascade for Approximate Angle Trisection
 
 **Author:** Wayne Baker  
 **Repository:** `constructible-cubic-trisection`  
 **Version:** 1.0.0  
-**Date:** July 2026  
-**Status:** Preprint / Research Source Archive
+**Manuscript date:** July 2, 2026  
+**Repository package date:** July 18, 2026  
+**Status:** Preprint / research source archive
 
----
+This repository contains the paper, LaTeX source, reproducibility scripts, numerical outputs, citation metadata, and supporting documentation for:
 
-## Overview
+> **A Constructible Cubic Error Cascade for Approximate Angle Trisection**
 
-This repository contains the complete research source for the paper
+## Read the paper
 
-> ***A Constructible Cubic Error Cascade for Approximate Angle Trisection***
+- [Compiled preprint PDF](paper/constructible_cubic_trisection.pdf)
+- [LaTeX source](paper/constructible_cubic_trisection.tex)
+- [Paper-source notes](paper/README.md)
 
-including the LaTeX manuscript, compiled PDF, and supporting documentation.
+## Main result
 
-The paper develops a straightedge-and-compass construction that produces a constructible approximation \(D(\theta)\) to one third of an arbitrary angle \(\theta\), together with a constructible residual refinement whose local convergence is cubic.
+The paper develops a straightedge-and-compass construction producing a constructible approximation \(D(\theta)\) to one third of a given angle \(\theta\). The seed error satisfies
 
-Rather than claiming an exact Euclidean trisection, the work establishes an arbitrarily refinable constructible approximation and proves the local cubic error law governing the refinement process.
-
----
-
-# Paper
-
-### Compiled manuscript
-
-- [`paper/constructible_cubic_trisection.pdf`](paper/constructible_cubic_trisection.pdf)
-
-### LaTeX source
-
-- [`paper/constructible_cubic_trisection.tex`](paper/constructible_cubic_trisection.tex)
-
----
-
-# Principal Results
-
-The principal local asymptotic results are
-
-\[
+$$
 D(\theta)-\frac{\theta}{3}
 =
-\frac{7}{10368}\theta^3
-+
-O(\theta^5),
-\]
+\frac{7}{10368}\theta^3+O(\theta^5),
+$$
 
-where angles are measured in radians throughout the asymptotic analysis.
+with asymptotic formulae expressed in radians.
 
-The constructible residual correction operator is
+For a signed approximation error \(e\), the residual map is
 
-\[
+$$
 \mathscr{R}(e)
 =
-e
--
-2\arcsin\!\left(
-\frac43\sin\frac{3e}{8}
-\right),
-\]
+e-2\arcsin\!\left(\frac{4}{3}\sin\frac{3e}{8}\right),
+$$
 
-whose local expansion is
+and its local expansion is
 
-\[
+$$
 \mathscr{R}(e)
 =
--\frac{7}{384}e^3
-+
-O(e^5).
-\]
+-\frac{7}{384}e^3+O(e^5).
+$$
 
-Consequently,
+Consequently, the successive local error orders are
 
-- **Seed approximation:** \(O(\theta^3)\)
-- **First refinement:** \(O(\theta^9)\)
-- **Second refinement:** \(O(\theta^{27})\)
+$$
+O(\theta^3)\longrightarrow O(\theta^9)
+\longrightarrow O(\theta^{27})\longrightarrow\cdots.
+$$
 
-demonstrating cubic error propagation under repeated refinement.
+## Scope and correctness
 
----
+This work does **not** claim exact straightedge-and-compass trisection of an arbitrary angle. The classical impossibility theorem remains unchanged. The result is an arbitrarily refinable sequence of finite Euclidean approximants within the proved local regime.
 
-# Scope
+The trigonometric notation is an analytic representation of Euclidean operations. Sine values are represented by directed projection lengths on a reference circle, rational scaling is performed with similar triangles, and the corresponding angle is recovered by a right-triangle construction.
 
-This work **does not** claim an exact straightedge-and-compass trisection of an arbitrary angle.
+## Mathematical context
 
-The classical impossibility theorem remains unchanged.
+Rouben Rostamian's exposition of Baker's construction records the seed formula, its cubic leading error, and the first iterative improvement. The paper in this repository formulates the construction as a residual operator, derives the local cubic residual law, and records the resulting finite-stage error cascade.
 
-Instead, it develops an arbitrarily refinable constructible approximation together with a rigorously derived local cubic refinement law.
+- [Rostamian: *An angle trisection - Construction by Wayne Baker*](https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html)
 
-The trigonometric expressions appearing in the analysis provide an analytic model of Euclidean constructions involving
+This is **Repository 1** in the Geometric Approximation Theory research sequence. Cross-repository links will be activated as the companion repositories become public.
 
-- angle copying,
-- angle bisection,
-- projection lengths,
-- similar triangles,
-- and right-triangle constructions.
+## Reproducibility
 
----
-
-# Analytic Domain
-
-The residual operator
-
-\[
-\mathscr{R}(e)
-=
-e
--
-2\arcsin\!\left(
-\frac43\sin\frac{3e}{8}
-\right)
-\]
-
-is defined whenever
-
-\[
-\left|
-\frac43
-\sin\frac{3e}{8}
-\right|
-\le
-1.
-\]
-
-This domain contains the local convergence region analyzed throughout the paper.
-
----
-
-# Repository Layout
-
-## Top-level files
-
-- `README.md`
-- `LICENSE`
-- `LICENSE-PAPER.md`
-- `LICENSE-NOTICE.md`
-- `CITATION.cff`
-- `CHANGELOG.md`
-- `REPRODUCIBILITY.md`
-- `.gitignore`
-
-## Paper
-
-- `paper/constructible_cubic_trisection.pdf`
-- `paper/constructible_cubic_trisection.tex`
-- `paper/README.md`
-
-## Documentation
-
-- `docs/abstract.md`
-- `docs/github_upload_checklist.md`
-- `docs/repository_description.md`
-
-## Supplementary directories
-
-- `figures/`
-- `scripts/`
-
----
-
-# Building the Paper
-
-Compile from inside the `paper` directory.
+The exact series coefficients and numerical consistency table can be reproduced with the included scripts:
 
 ```bash
-pdflatex constructible_cubic_trisection.tex
-pdflatex constructible_cubic_trisection.tex
+python -m pip install -r requirements.txt
+python scripts/verify_series.py
+python scripts/numerical_consistency_check.py --output-dir outputs
 ```
 
-Running LaTeX twice ensures that references, labels, and cross-references are fully resolved.
+The numerical script uses 100 decimal digits of working precision. Committed reference outputs are included under [`outputs/`](outputs/).
 
----
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for details.
 
-# Citation
-
-Repository citation metadata is provided in
+## Repository layout
 
 ```text
-CITATION.cff
+.
+├── README.md
+├── CITATION.cff
+├── CHANGELOG.md
+├── LICENSE
+├── LICENSE-PAPER.md
+├── LICENSE_NOTICE.MD
+├── REPRODUCIBILITY.md
+├── MANIFEST.txt
+├── SHA256SUMS.txt
+├── requirements.txt
+├── assets/
+│   └── Repo01_constructible-cubic-trisection.png
+├── paper/
+│   ├── constructible_cubic_trisection.pdf
+│   ├── constructible_cubic_trisection.tex
+│   └── README.md
+├── scripts/
+│   ├── numerical_consistency_check.py
+│   └── verify_series.py
+├── outputs/
+│   ├── numerical_consistency_report.txt
+│   ├── numerical_consistency_summary.csv
+│   └── symbolic_verification.txt
+├── docs/
+│   ├── abstract.md
+│   ├── github_upload_checklist.md
+│   ├── release_notes_v1.0.0.md
+│   ├── repository_description.md
+│   └── revision_report_2026-07-18.md
+└── figures/
 ```
 
-GitHub automatically uses this file to generate the **Cite this repository** feature.
+## Build instructions
 
----
+From the repository root:
 
-# Licensing
+```bash
+cd paper
+pdflatex constructible_cubic_trisection.tex
+pdflatex constructible_cubic_trisection.tex
+```
 
-This repository contains both research documents and software.
+Run LaTeX twice so references settle correctly.
 
-## Research documents
+## Citation
 
-The paper, figures, documentation, and supplementary written material are licensed under the
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff). On GitHub, this enables the **Cite this repository** control.
 
-**Creative Commons Attribution 4.0 International (CC BY 4.0)**
+A DOI can be added to `CITATION.cff` after the tagged GitHub release is archived.
 
-## Source code
+## License
 
-All source code contained in this repository is licensed under the
+This repository uses a dual-license structure:
 
-**MIT License**
+- paper text, figures, documentation, and supplementary written materials are licensed under [CC BY 4.0](LICENSE-PAPER.md);
+- source code is licensed under the [MIT License](LICENSE).
 
-See
-
-- `LICENSE`
-- `LICENSE-PAPER.md`
-- `LICENSE-NOTICE.md`
-
-for the complete licensing terms.
-
----
-
-# Related Work
-
-The broader proportional-subtended refinement theory developed within the **Geometric Approximation Theory** framework is presented in
-
-> **A Local Cubic Refinement Law for Proportional-Subtended Angle Division**
-
-Repository:
-
-<https://github.com/CWBaker360/proportional-subtended-cubic-refinement>
-
----
-
-# Independent Analysis
-
-An independent mathematical analysis of the construction is available from **Rouben Rostamian** (University of Maryland, Baltimore County).
-
-- *An Angle Trisection — Wayne Baker's Construction*
-- *Interactive Modular Trisection App*
-
-<https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html>
-
-<https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker-javascript.html>
-
----
-
-# Copyright
-
-© 2026 Wayne Baker
-
-Part of the **Geometric Approximation Theory** research series.
-
-All repository metadata, documentation, and licensing information are maintained alongside each published release.
+See [LICENSE_NOTICE.MD](LICENSE_NOTICE.MD) for the scope summary.

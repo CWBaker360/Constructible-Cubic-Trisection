@@ -1,57 +1,56 @@
-# GitHub Upload Checklist
+# GitHub Publication Checklist
 
-Use this checklist for the first public upload.
+Use this checklist when synchronizing the prepared files with the GitHub repository and creating release `v1.0.0`.
 
-## 1. Create the repository
+## Repository identity
 
-Suggested repository name:
+- Repository name: `constructible-cubic-trisection`
+- Description: `A constructible cubic error cascade for approximate angle trisection.`
+- Default branch: `main`
+- Release tag: `v1.0.0`
+- Release title: `A Constructible Cubic Error Cascade for Approximate Angle Trisection - v1.0.0`
 
-```text
-constructible-cubic-trisection
-```
+## Required files
 
-Suggested short description:
-
-```text
-A straightedge-and-compass constructible cubic error cascade for approximate angle trisection.
-```
-
-Suggested visibility for first setup:
-
-```text
-Private first, then public after final review.
-```
-
-## 2. Add files
-
-Upload these first:
+Confirm that GitHub contains the current versions of:
 
 ```text
 README.md
 CITATION.cff
-REPRODUCIBILITY.md
-LICENSE_NOTICE.md
 CHANGELOG.md
-.gitignore
-paper/constructible_cubic_trisection.tex
-paper/README.md
-docs/abstract.md
-docs/github_upload_checklist.md
-docs/repository_description.md
-```
-
-Optional but recommended before public release:
-
-```text
-paper/constructible_cubic_trisection.pdf
 LICENSE
+LICENSE-PAPER.md
+LICENSE_NOTICE.MD
+REPRODUCIBILITY.md
+MANIFEST.txt
+SHA256SUMS.txt
+requirements.txt
+assets/Repo01_constructible-cubic-trisection.png
+paper/constructible_cubic_trisection.pdf
+paper/constructible_cubic_trisection.tex
+scripts/verify_series.py
+scripts/numerical_consistency_check.py
+outputs/symbolic_verification.txt
+outputs/numerical_consistency_report.txt
+outputs/numerical_consistency_summary.csv
+docs/abstract.md
+docs/release_notes_v1.0.0.md
+docs/repository_description.md
+docs/revision_report_2026-07-18.md
 ```
 
-## 3. GitHub About section
+## Validation
 
-Use the description from `docs/repository_description.md`.
+- The PDF opens and matches the current LaTeX source.
+- The README image renders.
+- Every relative README link opens.
+- `CITATION.cff` parses without an error banner.
+- The profile name and repository author are spelled `Wayne Baker`.
+- The repository description and topics are entered.
+- The dual-license files are present and the README scope statement matches them.
+- The GitHub release is created before DOI archiving.
 
-Suggested topics:
+## Suggested topics
 
 ```text
 geometry
@@ -59,26 +58,17 @@ angle-trisection
 straightedge-and-compass
 constructible-geometry
 asymptotic-analysis
+cubic-convergence
 error-cascade
-latex
 mathematics
 ```
 
-## 4. First commit message
+## Release notes
 
-Suggested commit message:
+Copy the contents of:
 
 ```text
-Initial preprint archive for constructible cubic trisection cascade
+docs/release_notes_v1.0.0.md
 ```
 
-## 5. Public-release check
-
-Before switching the repository to public, confirm:
-
-- The PDF compiles from the uploaded source.
-- The title, author, and date are correct.
-- The README clearly says this is approximate trisection, not exact trisection.
-- A final license has been selected.
-- Citation metadata is present in `CITATION.cff`.
-- Any code/output files are either included or clearly marked as future additions.
+into the GitHub release description.

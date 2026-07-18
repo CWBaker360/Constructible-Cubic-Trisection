@@ -1,0 +1,7 @@
+Seed series:
+x/3 + 7*x**3/10368 + 7*x**5/884736 + 4969*x**7/45864714240 + O(x**9)
+
+Residual series:
+-7*x**3/384 - 63*x**5/32768 - 4969*x**7/20971520 + O(x**9)
+
+All exact coefficient checks passed.
