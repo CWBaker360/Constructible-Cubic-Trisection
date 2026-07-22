@@ -22,6 +22,7 @@ This repository contains the paper, LaTeX source, reproducibility scripts, numer
 - [Compiled preprint PDF](paper/constructible_cubic_trisection.pdf)
 - [LaTeX source](paper/constructible_cubic_trisection.tex)
 - [Paper-source notes](paper/README.md)
+- [Latest release](https://github.com/CWBaker360/Constructible-Cubic-Trisection/releases/latest)
 
 ## Main result
 
@@ -70,7 +71,23 @@ Rouben Rostamian's exposition of Baker's construction records the seed formula, 
 
 - [Rostamian: *An angle trisection - Construction by Wayne Baker*](https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html)
 
-This is **Repository 1** in the Geometric Approximation Theory research sequence. Cross-repository links will be activated as the companion repositories become public.
+## Research triad
+
+This paper is the first work in a three-paper research sequence:
+
+1. [A Constructible Cubic Error Cascade for Approximate Angle Trisection](https://github.com/CWBaker360/Constructible-Cubic-Trisection/releases/latest)
+2. [A Local Cubic Refinement Law for Proportional-Subtended Angle Division](https://github.com/CWBaker360/proportional-subtended-cubic-refinement/releases/latest)
+3. [A Constructive N-Series Acceleration Law for Polygonal Approximation of π](https://github.com/CWBaker360/N-Series-pi-acceleration/releases/latest)
+
+Together, the three papers develop the progression
+
+**constructible approximation → local cubic refinement → higher-order acceleration**.
+
+The first paper presents a specific straightedge-and-compass approximation and
+its cubic error cascade. The second derives the general proportional-subtended
+cancellation law and proves the uniqueness of the scaling that removes the
+linear residual term. The third applies structured asymptotic cancellation to
+accelerate polygonal approximations of π.
 
 ## Reproducibility
 
