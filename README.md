@@ -8,9 +8,10 @@
 
 **Author:** Wayne Baker  
 **Repository:** `constructible-cubic-trisection`  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Manuscript date:** July 2, 2026  
 **Repository package date:** July 18, 2026  
+**Maintenance release date:** July 22, 2026  
 **Status:** Preprint / research source archive
 
 This repository contains the paper, LaTeX source, reproducibility scripts, numerical outputs, citation metadata, and supporting documentation for:
