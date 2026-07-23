@@ -3,7 +3,7 @@ message: "If you use this repository, please cite the paper listed under preferr
 type: software
 title: "A Constructible Cubic Error Cascade for Approximate Angle Trisection: Research Source Archive"
 version: "1.0.1"
-date-released: "2026-07-22"
+date-released: 2026-07-23
 url: "https://github.com/CWBaker360/Constructible-Cubic-Trisection"
 repository-code: "https://github.com/CWBaker360/Constructible-Cubic-Trisection"
 authors:
