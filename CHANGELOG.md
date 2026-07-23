@@ -2,7 +2,7 @@
 
 All notable repository-level changes are recorded here.
 
-## v1.0.1 — 2026-07-22
+## v1.0.1 — 2026-07-23
 
 - Updated README metadata for version 1.0.1.
 - Added permanent latest-release and research-triad links.
