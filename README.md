@@ -9,7 +9,7 @@
 **Author:** Wayne Baker  
 **Repository:** `constructible-cubic-trisection`  
 **Published release:** 1.0.1 (July 23, 2026)  
-**Manuscript source revision:** November 16, 2026 (Lean 4 integrated, v4; release preparation)  
+**Manuscript source revision:** November 16, 2026 (consolidated v5; full-circle convergence, N-Series comparison, and scoped Lean 4 verification)  
 **Status:** Preprint / research source archive; final PDF and release tag pending
 
 This repository contains the paper, LaTeX source, reproducibility scripts, numerical outputs, citation metadata, and supporting documentation for:
@@ -21,7 +21,7 @@ This repository contains the paper, LaTeX source, reproducibility scripts, numer
 Lean 4/Mathlib verifies the local cubic limit
 \(\lim_{e\to0}F(e)/e^3=-7/384\). A combined-root clean build and fresh axiom audit are not included in this release.
 
-The updated [LaTeX manuscript source](paper/constructible_cubic_trisection.tex) incorporates this scope in Section 7. **The linked PDF is the previous release edition** until a rebuilt PDF is uploaded and the final release is tagged. No wider certification of the trisection manuscript or finite physical drawing tolerances is claimed.
+The updated [LaTeX manuscript source](paper/constructible_cubic_trisection.tex) incorporates this scope in Section 7, together with the full-circle convergence theorem and dyadic N-Series comparison. **The linked PDF is the previous release edition**, not yet the consolidated v5 PDF; its replacement and the final release tag are pending. No wider certification of the trisection manuscript or finite physical drawing tolerances is claimed.
 
 ## Read the paper
 
