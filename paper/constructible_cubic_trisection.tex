@@ -16,11 +16,7 @@
   colorlinks=true,
   linkcolor=blue!50!black,
   citecolor=blue!50!black,
-  urlcolor=blue!50!black,
-  pdftitle={A Constructible Cubic Error Cascade for Approximate Angle Trisection},
-  pdfauthor={Wayne Baker},
-  pdfsubject={Constructible approximation and cubic residual refinement for angle trisection},
-  pdfkeywords={approximate angle trisection, constructible geometry, cubic error cascade}
+  urlcolor=blue!50!black
 }
 
 \newtheorem{theorem}{Theorem}
@@ -31,18 +27,14 @@
 \newtheorem{remark}{Remark}
 
 \newcommand{\Rop}{\mathscr{R}}
-\newcommand{\dd}{\,d}
 
 \title{A Constructible Cubic Error Cascade for Approximate Angle Trisection}
 \author{Wayne Baker}
-\date{July 2, 2026\\[2pt]\small Version 1.0.0}
+\date{Original manuscript July 2, 2026 \\ Revised November 16, 2026}
 
+\emergencystretch=2em
 \begin{document}
 \maketitle
-
-\begin{center}
-\small Research source archive: \url{https://github.com/CWBaker360/constructible-cubic-trisection}
-\end{center}
 
 \begin{abstract}
 We describe a straightedge-and-compass construction producing a constructible approximation
@@ -83,7 +75,6 @@ straightedge-and-compass sense.
 \end{abstract}
 
 \section*{Overview}
-\label{sec:overview}
 
 The main idea is simple: start with a constructible seed approximation whose error is cubic in the angle size, then apply a constructible correction whose local error scales as the cube of the input error. In the local regime, this turns an \(O(\theta^3)\) approximation into one of order \(O(\theta^9)\), and a second correction gives \(O(\theta^{27})\). The analytic formulas in the paper are not numerical shortcuts; they are compact descriptions of Euclidean constructions carried out with standard compass-and-straightedge operations.
 
@@ -91,9 +82,7 @@ The technical sections below make this precise. Section~\ref{sec:euclidean-preli
 
 \section{Introduction}
 
-Exact trisection of an arbitrary angle is impossible by straightedge and compass alone. This classical result, established by Wantzel, concerns exact Euclidean constructibility~\cite{Wantzel1837}; for broader historical context, see Dudley~\cite{Dudley1987}. The present paper addresses a different problem: the construction of high-order approximations to \(\theta/3\).
-
-The seed construction and its first iterative improvement were analyzed in Rostamian's exposition of Baker's method~\cite{RostamianBaker}. The present paper formulates the mechanism as a residual operator, derives its local cubic law, and records the resulting finite-stage error cascade.
+Exact trisection of an arbitrary angle is impossible by straightedge and compass alone. This classical result, usually traced to Wantzel, concerns exact Euclidean constructibility. The present paper addresses a different problem: the construction of high-order approximations to \(\theta/3\).
 
 The method has two components. First, a Euclidean seed angle \(D\) is constructed from the given angle \(\theta\). Second, a residual correction is applied to the remaining signed error. Although the correction is written compactly with \(\sin\) and \(\arcsin\), the formula is only an analytic model of the construction rather than a numerical prescription. Geometrically, the sine term is represented by a directed length on a reference circle; the factor \(4/3\) is realized by similar triangles; and the inverse-sine step is obtained by constructing a right triangle and recovering its angle.
 
@@ -281,6 +270,29 @@ Equivalently, use the branch of
 that is odd near $\theta=0$.  With this convention the error expansion contains only odd
 powers of $\theta$.
 \end{remark}
+
+\begin{proposition}[Principal real domain of the seed]\label{prop:seed-domain}
+For the direct seed
+\[
+D(\theta)=2\arcsin\!\left(\frac43\sin\frac{\theta}{8}\right),
+\]
+the maximal connected interval containing zero on which the displayed
+principal-branch expression is real is
+\[
+-8\arcsin(3/4)\le\theta\le 8\arcsin(3/4).
+\]
+In particular, this interval contains $[-2\pi,2\pi]$.  This is a
+real-domain statement, not a proof of global convergence of the residual
+cascade.
+\end{proposition}
+\begin{proof}
+The principal real inverse sine requires
+$|(4/3)\sin(\theta/8)|\le1$.  On the component of this
+inequality containing zero, $\theta/8$ ranges from
+$-\arcsin(3/4)$ to $\arcsin(3/4)$, yielding the stated
+endpoints.  Since $\arcsin(3/4)>\pi/4$, the interval contains
+$[-2\pi,2\pi]$.
+\end{proof}
 
 \section{The Residual Correction Step}
 
@@ -514,7 +526,7 @@ and
 \[
 M-\frac{\theta}{3}
 =
-\frac{7^{13}}{384^4\,10368^9}\theta^{27}
+\frac{7^{13}}{384^4\cdot 10368^9}\theta^{27}
 +
 O(\theta^{29}).
 \]
@@ -562,20 +574,44 @@ Substituting the leading term of $e_1$ gives
 \[
 e_2
 =
-\frac{7^{13}}{384^4\,10368^9}\theta^{27}
+\frac{7^{13}}{384^4\cdot 10368^9}\theta^{27}
 +
 O(\theta^{29}).
 \]
 \end{proof}
 
-\begin{corollary}[Order sequence]
-If the initial seed error is $O(\theta^3)$ and each refinement remains in the local
-principal domain, then the successive local error orders are
+\begin{corollary}[Exact local orders]\label{cor:exact-orders}
+For the seed in Theorem~\ref{thm:seed} and the residual
+correction of Theorem~\ref{thm:residual}, let $e_n(\theta)=A_n(\theta)-\theta/3$.
+For every fixed nonnegative integer $n$, as $\theta\to0$,
 \[
-3,\quad 9,\quad 27,\quad 81,\ldots .
+e_n(\theta)=c_n\theta^{q_n}+O(\theta^{q_n+2}),
+\qquad q_n=3^{n+1},\quad c_n\ne0.
 \]
-After $n$ residual corrections, the local error order is $3^{n+1}$.
+In particular, the \emph{exact} local orders are
+$3,9,27,81,\ldots$, rather than merely upper bounds.
 \end{corollary}
+\begin{proof}
+The seed expansion gives $q_0=3$ and $c_0=7/10368\ne0$.
+Suppose $e_n=c_n\theta^{q_n}+O(\theta^{q_n+2})$ with
+$q_n\ge3$ and $c_n\ne0$. By the residual expansion,
+\[
+e_{n+1}=-\frac7{384}e_n^3+O(e_n^5)
+= -\frac7{384}c_n^3\theta^{3q_n}
+   +O(\theta^{3q_n+2}),
+\]
+since $5q_n\ge3q_n+2$. Thus $q_{n+1}=3q_n$ and
+$c_{n+1}=-(7/384)c_n^3\ne0$. Induction proves the assertion.
+\end{proof}
+\begin{remark}[Leading-coefficient fingerprint]
+The leading coefficient admits the explicit form
+\[
+c_n=(-1)^n\frac{7^{(3^{n+1}-1)/2}}
+{384^{(3^n-1)/2}\cdot 10368^{3^n}}.
+\]
+The powers of $7$ start $1,4,13,40,\ldots$. This is a
+coefficient identity, not an independent convergence theorem.
+\end{remark}
 
 \section{Constructibility Status}
 
@@ -587,7 +623,7 @@ Euclidean operations on a reference circle.
 The distinction is important.  The method constructs a sequence of angles converging
 rapidly to $\theta/3$ in the local asymptotic regime.  It does not imply that the exact
 angle $\theta/3$ is constructible for arbitrary $\theta$.  Therefore the construction is
-consistent with Wantzel's theorem~\cite{Wantzel1837}.
+consistent with Wantzel's theorem.
 
 \begin{remark}[Finite stage versus limiting value]
 Each finite stage $A_n$ is obtained by finitely many straightedge-and-compass operations.
@@ -599,8 +635,74 @@ The limiting value
 \]
 when convergence holds, is not thereby a finite Euclidean construction of $\theta/3$.
 Classical constructibility concerns finite constructions, not limits of improving
-constructible approximants.
+constructible approximants.  The exact-operation geometric model does not certify
+finite physical drawing or instrument tolerances.
 \end{remark}
+
+\section{Formal Verification in Lean 4}\label{sec:lean}
+
+The leading cubic coefficient in Theorem~\ref{thm:residual} has also been checked in
+Lean~4 with Mathlib.  The formalized residual is
+\[
+F(e)=e-2\arcsin\!\left(\frac43\sin\frac{3e}{8}\right),
+\]
+and the machine-checked limit is
+\begin{equation}\label{eq:lean-cubic}
+\lim_{e\to0}\frac{F(e)}{e^3}=-\frac7{384}.
+\end{equation}
+This is the precise local coefficient assertion in the theorem above.
+It establishes $F(e)=-(7/384)e^3+o(e^3)$, whereas the stronger
+$O(e^5)$ remainder and the explicit fifth- and seventh-order coefficients
+in Theorem~\ref{thm:residual} are established by the analytical series
+calculation in this manuscript, not by the cited Lean limit alone.
+
+\subsection{Two formal proof routes}
+One Lean development obtains the limit using third derivatives and a
+Taylor remainder argument.  A second development obtains the same limit
+by differentiation followed by a L'H\^opital-style limit argument.
+A separate statement bridge verifies that the differently presented
+residual formulas denote the same expression.  The reported compiled
+modules include \path{CubicLimit_Claude.lean} and
+\path{ClaudeStatementBridge.lean}; the alternative proof was placed
+under the namespace \path{BakerTrisection.LHopital} to avoid theorem-name
+collisions.  These are distinct proof strategies within the same proof
+assistant and mathematical library, not independent proof assistants.
+
+\subsection{Audit evidence and precise scope}
+The retained build transcripts report successful separate compilation
+of the alternative calculus proof and the statement bridge (exit code~0).
+The original Taylor proof and bridge axiom checks report only the
+standard foundational dependencies
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound};
+no \texttt{sorryAx} was reported in those audits.  The earlier verification
+record~\cite{BakerLeanRecord2026} did not itself contain a separately
+observed clean combined-root build log.  Accordingly, this manuscript
+reports the available checks but does not claim a fresh clean-root build
+or a complete Lean formalization of every theorem in this paper.
+
+In particular, the seed coefficient in Theorem~\ref{thm:seed}, the
+higher-order coefficients in Theorem~\ref{thm:residual}, all stated
+constructibility claims, and the numerical table remain supported by
+their own analytical or computational arguments, not by an implied
+additional Lean certification.  Wantzel's impossibility theorem remains
+unaffected by the verification of an approximate correction.
+
+\subsection{Reproducibility artifacts and verification boundary}
+The verified mathematical statement is the local cubic limit in
+Eq.~\eqref{eq:lean-cubic}. The companion verification record
+\cite{BakerLeanRecord2026} documents the separately compiled Taylor and
+L'H\^opital-style proof routes and their statement bridge, with the
+reported standard axiom dependencies. That historical record does not
+supply an independently observed combined-root clean build.
+
+A release-grade reproducibility archive is defined by the exact Lean
+sources, the pinned \texttt{lean-toolchain} and
+\texttt{lake-manifest.json}, a combined-root \texttt{lake build}
+transcript, the outputs of fresh \texttt{\#print axioms} checks, and a
+SHA-256 file manifest. These artifacts are not asserted to be present
+in the current manuscript package. The verified limit and its available
+audit evidence are therefore reported precisely, without treating a
+pending release audit as a completed one.
 
 \section{Numerical Consistency Check}
 \label{sec:numerical-check}
@@ -623,7 +725,7 @@ $210$ & $2.27$                & $6.53\times 10^{-5}$  & $1.55\times 10^{-18}$ \\
 \label{tab:numerical}
 \end{table}
 
-The table is intended for illustration rather than proof. It shows the scale of the error reduction at representative small, moderate, and large input angles.
+The table is intended for illustration rather than proof. It shows the scale of the error reduction at representative small, moderate, and large input angles. In particular, the $120^\circ$ and $210^\circ$ rows are numerical observations outside the asymptotic $\theta\to0$ statement of Corollary~\ref{cor:exact-orders}; they do not by themselves prove global contraction.
 
 \section{Comparison with Exact Trisection}
 
@@ -714,6 +816,11 @@ r_5=-\frac{63}{32768},
 r_7=-\frac{4969}{20971520}.
 \]
 
+The seed and residual cubic coefficients obey the exact identity
+\[
+\frac{7}{10368}=\frac1{27}\,\frac7{384}.
+\]
+
 These rational coefficients follow from formal composition of the Maclaurin series for
 $\sin x$ and $\arcsin x$.
 
@@ -722,8 +829,7 @@ $\sin x$ and $\arcsin x$.
 
 The following symbolic computation verifies the displayed seed and residual
 coefficients.  It is included only as a reproducibility aid; the proofs above use
-the same formal series composition by hand. A standalone version is supplied in
-\texttt{scripts/verify\_series.py}.
+the same formal series composition by hand.
 
 \begin{verbatim}
 import sympy as sp
@@ -751,8 +857,7 @@ x/3 + 7*x**3/10368 + 7*x**5/884736
 \label{app:numerical-code}
 
 This appendix records the short high-precision computation used to reproduce
-Table~\ref{tab:numerical}. A standalone version is supplied in
-\texttt{scripts/numerical\_consistency\_check.py}. The computation is not used as evidence for the
+Table~\ref{tab:numerical}.  The computation is not used as evidence for the
 theorems.  The theorems follow from exact formal series composition; the
 numerical output is included only as a consistency check and as a reproducibility
 record.
@@ -837,7 +942,6 @@ Table~\ref{tab:numerical}, this gives
 \end{array}
 \]
 
-\small
 \begin{thebibliography}{9}
 
 \bibitem{Wantzel1837}
@@ -845,19 +949,21 @@ P. L. Wantzel,
 ``Recherches sur les moyens de reconnaître si un problème de géométrie peut se résoudre avec la règle et le compas,''
 \emph{Journal de Mathématiques Pures et Appliquées}, vol. 2, pp. 366--372, 1837.
 
+\bibitem{RostamianBaker}
+R. Rostamian,
+``Trisection of an angle -- Baker's method,''
+University of Maryland, Baltimore County.
+\url{https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html}
+
 \bibitem{Dudley1987}
 U. Dudley,
 \emph{A Budget of Trisections}.
-Springer-Verlag, New York, 1987.
+Springer, 1987.
 
-\bibitem{RostamianBaker}
-R. Rostamian,
-``An angle trisection: Construction by Wayne Baker,''
-University of Maryland, Baltimore County, 2010; updated August 2025.
-\url{https://userpages.umbc.edu/~rostamia/Geometry/trisect-baker.html}
-(accessed July 18, 2026).
+\bibitem{BakerLeanRecord2026}
+W. Baker, ``Two Formal Proofs of the Baker 4:3 Cubic Residual Limit,''
+Lean 4/Mathlib verification milestone report, November 8, 2026.
 
 \end{thebibliography}
-\normalsize
 
 \end{document}
