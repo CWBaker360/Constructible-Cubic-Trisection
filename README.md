@@ -8,15 +8,20 @@
 
 **Author:** Wayne Baker  
 **Repository:** `constructible-cubic-trisection`  
-**Version:** 1.0.1  
-**Maintenance release date:** July 23, 2026 
-**Repository package date:** July 18, 2026  
-**Maintenance release date:** July 22, 2026  
-**Status:** Preprint / research source archive
+**Published release:** 1.0.1 (July 23, 2026)  
+**Manuscript source revision:** November 16, 2026 (Lean 4 integrated, v4; release preparation)  
+**Status:** Preprint / research source archive; final PDF and release tag pending
 
 This repository contains the paper, LaTeX source, reproducibility scripts, numerical outputs, citation metadata, and supporting documentation for:
 
 > **A Constructible Cubic Error Cascade for Approximate Angle Trisection**
+
+## Lean 4 verification — exact scope
+
+Lean 4/Mathlib verifies the local cubic limit
+\(\lim_{e\to0}F(e)/e^3=-7/384\). A combined-root clean build and fresh axiom audit are not included in this release.
+
+The updated [LaTeX manuscript source](paper/constructible_cubic_trisection.tex) incorporates this scope in Section 7. **The linked PDF is the previous release edition** until a rebuilt PDF is uploaded and the final release is tagged. No wider certification of the trisection manuscript or finite physical drawing tolerances is claimed.
 
 ## Read the paper
 
