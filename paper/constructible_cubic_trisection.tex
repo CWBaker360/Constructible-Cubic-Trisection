@@ -72,13 +72,20 @@ constructing the corresponding right-triangle angle.  The method therefore
 constructs arbitrarily refinable approximants to \(\theta/3\), while the exact
 trisection of an arbitrary angle remains impossible in the classical
 straightedge-and-compass sense.
+
+We also prove full-circle convergence for $0\le\theta\le2\pi$:
+the initial error lies in $(-\pi/3,\pi/3)$, and every nonzero residual
+contracts in magnitude by a factor strictly smaller than $1/2$.
+The analytic comparison with dyadic N-Series acceleration is structural,
+not an efficiency claim. Lean~4/Mathlib verification is confined to the
+leading cubic-limit coefficient under the documented audit boundary.
 \end{abstract}
 
 \section*{Overview}
 
 The main idea is simple: start with a constructible seed approximation whose error is cubic in the angle size, then apply a constructible correction whose local error scales as the cube of the input error. In the local regime, this turns an \(O(\theta^3)\) approximation into one of order \(O(\theta^9)\), and a second correction gives \(O(\theta^{27})\). The analytic formulas in the paper are not numerical shortcuts; they are compact descriptions of Euclidean constructions carried out with standard compass-and-straightedge operations.
 
-The technical sections below make this precise. Section~\ref{sec:euclidean-preliminaries} explains how the trigonometric notation is realized geometrically. The seed construction is then analyzed, followed by the residual correction step and the resulting cubic cascade. The final sections record the constructibility status, a numerical consistency check, and the comparison with exact trisection.
+The technical sections below make this precise. Section~\ref{sec:euclidean-preliminaries} explains how the trigonometric notation is realized geometrically. The seed construction is then analyzed, followed by the residual correction step and the resulting cubic cascade. The later sections give a full-circle convergence theorem, a numerical consistency check, a comparison with dyadic N-Series acceleration, and the precise Lean verification boundary.
 
 \section{Introduction}
 
@@ -704,6 +711,115 @@ in the current manuscript package. The verified limit and its available
 audit evidence are therefore reported precisely, without treating a
 pending release audit as a completed one.
 
+
+\section{Full-Circle Well-Definedness and Global Contraction}\label{sec:full-circle}
+
+The error-order statements above are local as $\theta\to0$. The geometric
+recursion also admits a global real-domain and convergence guarantee for
+ordinary full-circle inputs $0\le\theta\le2\pi$. The following proofs
+concern the principal signed branch defined in Sections 3--4.
+
+\begin{proposition}[Full-circle seed error]\label{prop:full-circle-seed}
+For every $0<\theta\le2\pi$, the direct error
+\[
+e_0(\theta)=2\arcsin\!\left(\frac43\sin\frac\theta8\right)-\frac\theta3
+\]
+is positive, strictly increasing, and satisfies
+\[
+0<e_0(\theta)\le e_0(2\pi)
+=2\arcsin\!\left(\frac{2\sqrt2}{3}\right)-\frac{2\pi}{3}
+<\frac\pi3.
+\]
+\end{proposition}
+\begin{proof}
+Put $x=\theta/8$, so $0<x\le\pi/4$. The inverse-sine argument
+satisfies $0<(4/3)\sin x\le 2\sqrt2/3<1$.
+Differentiation gives
+\[
+D'(\theta)=\frac13\frac{\cos(\theta/8)}
+ {\sqrt{1-\frac{16}{9}\sin^2(\theta/8)}}.
+\]
+Since $\cos^2x=1-\sin^2x>1-(16/9)\sin^2x$ for
+$0<x\le\pi/4$, both sides are positive and $D'(\theta)>1/3$.
+Thus $e_0'(\theta)>0$, and $e_0(0)=0$.
+At the endpoint, $D(2\pi)=2\arcsin(2\sqrt2/3)<\pi$,
+whence $e_0(2\pi)<\pi/3$.
+\end{proof}
+
+\begin{theorem}[Global contraction on the active error interval]
+\label{thm:global-contraction}
+For every nonzero $e$ with $|e|<\pi/3$, the residual
+\[
+\Rop(e)=e-2\arcsin\!\left(\frac43\sin\frac{3e}{8}\right)
+\]
+is real-valued, reverses the sign of the error, and obeys
+\[
+\boxed{\quad |\Rop(e)|<\frac12|e|.\quad}
+\]
+\end{theorem}
+\begin{proof}
+The residual is odd, so consider $0<e<\pi/3$ and set $x=3e/4$.
+Then $0<x<\pi/4$ and the correction is
+\[
+\Phi(x)=2\arcsin\!\left(\frac43\sin\frac{x}{2}\right),
+\qquad \Rop(e)=e-\Phi(x),\qquad e=\frac{4x}{3}.
+\]
+The arcsine is real because
+$0<(4/3)\sin(x/2)<(4/3)\sin(\pi/8)<1$.
+
+For the lower bound, the function $t\mapsto\sin t/t$ decreases
+strictly on $(0,\pi)$, hence
+\[
+\frac{\sin(x/2)}{x/2}>
+\frac{\sin(2x/3)}{2x/3},\qquad
+\frac43\sin\frac{x}{2}>\sin\frac{2x}{3}.
+\]
+Both angles lie in the principal inverse-sine range. Applying
+$2\arcsin$ therefore yields $\Phi(x)>4x/3=e$.
+
+For the upper bound, $x/2<\pi/8$ implies
+$\cos(x/2)>\cos(\pi/8)>2/3$, and so
+\[
+\sin x=2\sin\frac{x}{2}\cos\frac{x}{2}>
+\frac43\sin\frac{x}{2}.
+\]
+Monotonicity of $\arcsin$ gives $\Phi(x)<2x=3e/2$.
+Consequently
+\[
+e<\Phi(x)<\frac{3e}{2},\qquad
+-\frac e2<\Rop(e)<0.
+\]
+Oddness gives sign reversal and the strict bound for negative $e$.
+\end{proof}
+
+\begin{corollary}[Full-circle existence of the complete cascade]
+\label{cor:full-circle}
+For every $0\le\theta\le2\pi$, each $A_n(\theta)$ is a real
+principal-branch approximation. For $\theta>0$,
+\[
+|e_n(\theta)|<2^{-n}|e_0(\theta)|<\frac{\pi}{3\cdot2^n}
+\quad(n\ge1),
+\]
+while $e_n(0)=0$. Consequently, $A_n(\theta)\to\theta/3$
+uniformly on $[0,2\pi]$.
+\end{corollary}
+\begin{proof}
+Proposition~\ref{prop:full-circle-seed} places $e_0$ in
+$(-\pi/3,\pi/3)$. Theorem~\ref{thm:global-contraction} maps each
+nonzero error back into that interval and decreases its magnitude by a
+factor strictly less than $1/2$. Induction proves the stated bounds,
+with $e_n(0)=0$. Since $\sup_{0\le\theta\le2\pi}|e_0(\theta)|<\pi/3$,
+the uniform geometric majorant tends to zero.
+\end{proof}
+
+\begin{remark}[Two different convergence statements]
+The global factor-$1/2$ bound certifies existence and convergence on the
+full circle; it is not an asymptotic estimate of exact order. The local
+law $e_{n+1}=-(7/384)e_n^3+O(e_n^5)$ supplies the higher orders
+$3,9,27,81,\ldots$ as $\theta\to0$. Neither result certifies finite
+instrument or drawing tolerance.
+\end{remark}
+
 \section{Numerical Consistency Check}
 \label{sec:numerical-check}
 
@@ -725,7 +841,88 @@ $210$ & $2.27$                & $6.53\times 10^{-5}$  & $1.55\times 10^{-18}$ \\
 \label{tab:numerical}
 \end{table}
 
-The table is intended for illustration rather than proof. It shows the scale of the error reduction at representative small, moderate, and large input angles. In particular, the $120^\circ$ and $210^\circ$ rows are numerical observations outside the asymptotic $\theta\to0$ statement of Corollary~\ref{cor:exact-orders}; they do not by themselves prove global contraction.
+The table is intended for illustration rather than proof. It shows the scale of the error reduction at representative small, moderate, and large input angles. The $120^\circ$ and $210^\circ$ rows lie outside the asymptotic $\theta\to0$ statement of Corollary~\ref{cor:exact-orders}; the independent global convergence result is Theorem~\ref{thm:global-contraction} and Corollary~\ref{cor:full-circle}, not the table.
+
+
+\section{Comparison with Dyadic N-Series Acceleration}
+\label{sec:nseries-comparison}
+
+The geometric cascade and dyadic Richardson--Lagrange acceleration
+increase approximation order by different mechanisms. For the Baker
+seed, set
+\[
+Q_{2^j}(\theta)=2^jD(\theta/2^j),\qquad j=0,\ldots,m-1.
+\]
+Each $Q_{2^j}(\theta)$ has the expansion
+$\theta/3+\sum_{k\ge1}a_k\theta^{2k+1}2^{-2jk}$.
+Define the depth-$m$ extrapolant
+\[
+A^{(m)}(\theta)=\sum_{j=0}^{m-1}w_j^{(m)}Q_{2^j}(\theta),
+\]
+where the rational weights are determined by
+\[
+\sum_{j=0}^{m-1}w_j^{(m)}=1,
+\qquad
+\sum_{j=0}^{m-1}w_j^{(m)}2^{-2jk}=0
+\quad (k=1,\ldots,m-1).
+\]
+These are the standard Richardson moment-cancellation conditions
+\cite{Richardson1911,StoerBulirsch2002}.
+For the analytic Baker seed, the first possible surviving term has degree
+$2m+1$, giving
+\[
+A^{(m)}(\theta)-\frac\theta3=O(\theta^{2m+1})
+\qquad(\theta\to0).
+\]
+For example, the depth-three weights for $j=0,1,2$ are
+$1/45,-4/9,64/45$.
+
+\begin{proposition}[Formal comparison of order growth]
+\label{prop:nseries-comparison}
+After $n$ geometric correction stages, the Baker signed error has exact
+local order $q_n=3^{n+1}$. The depth-$m$ dyadic combination satisfies the
+upper-order bound $O(\theta^{2m+1})$. Consequently the first geometric
+correction has order $9$, matching the formal order at depth $m=4$;
+the second geometric correction has order $27$, matching depth $m=13$.
+\end{proposition}
+\begin{proof}
+The geometric assertion is Corollary~\ref{cor:exact-orders}.
+The dyadic assertion follows by inserting the odd-power expansion into
+the weighted sum and applying the displayed moment identities. The
+integer depth matches solve $2m+1=9$ and $2m+1=27$, respectively.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lll}
+\toprule
+Method & Stage or depth & Local error order \\
+\midrule
+Direct geometric seed & $n=0$ & $\theta^3$ \\
+First geometric correction & $n=1$ & $\theta^9$ \\
+Second geometric correction & $n=2$ & $\theta^{27}$ \\
+Third geometric correction & $n=3$ & $\theta^{81}$ \\
+Dyadic N-Series & depth $m$ & $O(\theta^{2m+1})$ \\
+N-Series matching first correction & $m=4$ & $O(\theta^9)$ \\
+N-Series matching second correction & $m=13$ & $O(\theta^{27})$ \\
+\bottomrule
+\end{tabular}
+\caption{Local order-growth comparison. Formal order matching is not an
+efficiency or constructibility comparison.}
+\end{table}
+
+\begin{remark}[Constructibility and costs]
+The $A_n$ recursion is built from finite Euclidean operations. By
+contrast, the analytic dyadic extrapolant is a weighted angle sum.
+Although rational length scaling is Euclidean, arbitrary rational
+\emph{angle} scaling does not generally preserve straightedge-and-compass
+constructibility; for example, division of an arbitrary angle by nine
+is not generally available. Thus the weighted expression is not here
+claimed to be one single Euclidean construction. Likewise, faster
+formal order growth with the number of stages does not imply better
+runtime, noise conditioning, or operation count. A cost comparison
+requires a common model of allowed operations and working precision.
+\end{remark}
 
 \section{Comparison with Exact Trisection}
 
@@ -773,7 +970,7 @@ Thus the error order rises cubically under iteration:
 3,\quad 9,\quad 27,\quad 81,
 \ldots .
 \]
-The resulting angles are constructible approximants to $\theta/3$.  The exact trisection
+On $0\le\theta\le2\pi$, the real-branch sequence also converges uniformly to $\theta/3$ by Theorem~\ref{thm:global-contraction}. The formal comparison with dyadic N-Series acceleration describes distinct order-raising mechanisms, not a like-for-like efficiency claim. The resulting angles are constructible approximants to $\theta/3$.  The exact trisection
 of an arbitrary angle remains impossible by finite straightedge-and-compass construction.
 
 \appendix
@@ -800,8 +997,7 @@ c_7=\frac{4969}{45864714240}.
 \]
 
 The residual expansion begins
-\[
-\Rop(e)
+\[\Rop(e)
 =
 \sum_{\substack{p\ge 3\\ p\,\mathrm{odd}}}r_p e^p,
 \]
@@ -942,7 +1138,7 @@ Table~\ref{tab:numerical}, this gives
 \end{array}
 \]
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
 \bibitem{Wantzel1837}
 P. L. Wantzel,
@@ -959,6 +1155,18 @@ University of Maryland, Baltimore County.
 U. Dudley,
 \emph{A Budget of Trisections}.
 Springer, 1987.
+
+\bibitem{Richardson1911}
+L. F. Richardson,
+``The approximate arithmetical solution by finite differences of physical
+problems involving differential equations, with an application to the
+stresses in a masonry dam,''
+\emph{Philosophical Transactions of the Royal Society of London A},
+vol. 210, pp. 307--357, 1911. DOI: 10.1098/rsta.1911.0009.
+
+\bibitem{StoerBulirsch2002}
+J. Stoer and R. Bulirsch,
+\emph{Introduction to Numerical Analysis}, 3rd ed. Springer, 2002.
 
 \bibitem{BakerLeanRecord2026}
 W. Baker, ``Two Formal Proofs of the Baker 4:3 Cubic Residual Limit,''
